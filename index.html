@@ -35,7 +35,7 @@
   </style>
 </head>
 <body>
-  <h1>Pixel War Multijoueur 🖌️V5</h1>
+  <h1>Pixel War Multijoueur 🖌️V6</h1>
   <label>Choisis une couleur : <input type="color" id="colorPicker" value="#000000"></label>
   <div id="loading">Chargement de la grille...</div>
   <div id="grid"></div>
@@ -57,6 +57,8 @@
       measurementId: "G-VTNRE9B1SM",
       databaseURL: "https://pixelwar-947d9-default-rtdb.europe-west1.firebasedatabase.app"
     };
+
+    let isLoading = true; // true tant que la grille n'est pas chargée
 
     // Initialisation Firebase
     firebase.initializeApp(firebaseConfig);
@@ -83,16 +85,16 @@
 
     // Fonction pour placer un pixel
     function placePixel(index) {
-      if (!canDraw) return;
-
+      if (!canDraw || isLoading) return; // bloque si cooldown ou chargement
+    
       const color = colorPicker.value;
-
+    
       // Affichage immédiat pour l'utilisateur
       grid.children[index].style.background = color;
-
+    
       // Écriture dans Firebase
       db.ref("pixels/" + index).set(color);
-
+    
       // Cooldown
       canDraw = false;
       cooldownDisplay.textContent = `Cooldown en cours... ⏳`;
@@ -101,6 +103,7 @@
         cooldownDisplay.textContent = `Prêt à dessiner ✅`;
       }, cooldownTime);
     }
+
 
     // Initialisation de la grille si elle est vide
     db.ref("pixels").once("value").then(snapshot => {
@@ -115,15 +118,20 @@
     db.ref("pixels").on("value", snapshot => {
       const data = snapshot.val();
       if (!data) return;
-
+    
       Object.keys(data).forEach(i => {
         grid.children[i].style.background = data[i];
       });
-
+    
       // Masquer le loader et afficher la grille
       loadingDisplay.style.display = "none";
       grid.style.display = "grid";
+    
+      // Débloquer les clics
+      isLoading = false;
     });
+
   </script>
 </body>
 </html>
+
