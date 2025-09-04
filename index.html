@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Mini Pixel War</title>
+  <title>Pixel War Multijoueur</title>
   <style>
     body { 
       display: flex; 
@@ -12,8 +12,8 @@
     }
     #grid {
       display: grid;
-      grid-template-columns: repeat(30, 12px);
-      grid-template-rows: repeat(30, 12px);
+      grid-template-columns: repeat(50, 12px);
+      grid-template-rows: repeat(50, 12px);
       gap: 1px;
       margin-top: 20px;
     }
@@ -31,32 +31,66 @@
   </style>
 </head>
 <body>
-  <h1>Mini Pixel War 🖌️</h1>
+  <h1>Pixel War Multijoueur 🖌️</h1>
   <label>Choisis une couleur : <input type="color" id="colorPicker" value="#000000"></label>
   <div id="grid"></div>
   <div id="cooldown">Prêt à dessiner ✅</div>
 
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
   <script>
+    // ⚠️ Mets ici ta configuration Firebase copiée à l'étape 2
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "firebase/app";
+    import { getAnalytics } from "firebase/analytics";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+    apiKey: "AIzaSyB2aFjkYqtpCOV95GydPGIqFCH3ujL917U",
+    authDomain: "pixelwar-947d9.firebaseapp.com",
+    projectId: "pixelwar-947d9",
+    storageBucket: "pixelwar-947d9.firebasestorage.app",
+    messagingSenderId: "799142607185",
+    appId: "1:799142607185:web:751e621a431691c5e3fb70",
+    measurementId: "G-VTNRE9B1SM"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    // Initialisation Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     const grid = document.getElementById("grid");
     const colorPicker = document.getElementById("colorPicker");
     const cooldownDisplay = document.getElementById("cooldown");
 
-    const size = 30; // taille de la grille
-    const cooldownTime = 500; // 3 secondes
+    const size = 50;
+    const cooldownTime = 100;
     let canDraw = true;
 
     // Création de la grille
     for (let i = 0; i < size * size; i++) {
       const pixel = document.createElement("div");
       pixel.classList.add("pixel");
-      pixel.addEventListener("click", () => placePixel(pixel));
+      pixel.dataset.index = i;
+      pixel.addEventListener("click", () => placePixel(i));
       grid.appendChild(pixel);
     }
 
-    function placePixel(pixel) {
+    function placePixel(index) {
       if (!canDraw) return;
 
-      pixel.style.background = colorPicker.value;
+      const color = colorPicker.value;
+      firebase.database().ref("pixels/" + index).set(color);
+
       canDraw = false;
       cooldownDisplay.textContent = `Cooldown en cours... ⏳`;
 
@@ -65,6 +99,15 @@
         cooldownDisplay.textContent = `Prêt à dessiner ✅`;
       }, cooldownTime);
     }
+
+    // Mise à jour en temps réel
+    firebase.database().ref("pixels").on("value", snapshot => {
+      const data = snapshot.val();
+      if (!data) return;
+      Object.keys(data).forEach(i => {
+        grid.children[i].style.background = data[i];
+      });
+    });
   </script>
 </body>
 </html>
