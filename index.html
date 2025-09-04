@@ -31,7 +31,7 @@
   </style>
 </head>
 <body>
-  <h1>Pixel War Multijoueur 🖌️V2</h1>
+  <h1>Pixel War Multijoueur 🖌️V3</h1>
   <label>Choisis une couleur : <input type="color" id="colorPicker" value="#000000"></label>
   <div id="grid"></div>
   <div id="cooldown">Prêt à dessiner ✅</div>
@@ -76,13 +76,18 @@
 
     function placePixel(index) {
       if (!canDraw) return;
-
+    
       const color = colorPicker.value;
+    
+      // Mise à jour immédiate pour toi
+      grid.children[index].style.background = color;
+    
+      // Écriture dans Firebase
       db.ref("pixels/" + index).set(color);
-
+    
       canDraw = false;
       cooldownDisplay.textContent = `Cooldown en cours... ⏳`;
-
+    
       setTimeout(() => {
         canDraw = true;
         cooldownDisplay.textContent = `Prêt à dessiner ✅`;
@@ -100,4 +105,5 @@
   </script>
 </body>
 </html>
+
 
