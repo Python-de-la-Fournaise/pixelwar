@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Pixel War</title>
+  <style>
+    body { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      font-family: sans-serif; 
+    }
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(30, 12px);
+      grid-template-rows: repeat(30, 12px);
+      gap: 1px;
+      margin-top: 20px;
+    }
+    .pixel {
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+    #cooldown {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mini Pixel War 🖌️</h1>
+  <label>Choisis une couleur : <input type="color" id="colorPicker" value="#000000"></label>
+  <div id="grid"></div>
+  <div id="cooldown">Prêt à dessiner ✅</div>
+
+  <script>
+    const grid = document.getElementById("grid");
+    const colorPicker = document.getElementById("colorPicker");
+    const cooldownDisplay = document.getElementById("cooldown");
+
+    const size = 30; // taille de la grille
+    const cooldownTime = 500; // 3 secondes
+    let canDraw = true;
+
+    // Création de la grille
+    for (let i = 0; i < size * size; i++) {
+      const pixel = document.createElement("div");
+      pixel.classList.add("pixel");
+      pixel.addEventListener("click", () => placePixel(pixel));
+      grid.appendChild(pixel);
+    }
+
+    function placePixel(pixel) {
+      if (!canDraw) return;
+
+      pixel.style.background = colorPicker.value;
+      canDraw = false;
+      cooldownDisplay.textContent = `Cooldown en cours... ⏳`;
+
+      setTimeout(() => {
+        canDraw = true;
+        cooldownDisplay.textContent = `Prêt à dessiner ✅`;
+      }, cooldownTime);
+    }
+  </script>
+</body>
+</html>
