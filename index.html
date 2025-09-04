@@ -35,11 +35,12 @@
   </style>
 </head>
 <body>
-  <h1>Pixel War Multijoueur 🖌️V6</h1>
+  <h1>Pixel War Multijoueur 🖌️V8</h1>
   <label>Choisis une couleur : <input type="color" id="colorPicker" value="#000000"></label>
   <div id="loading">Chargement de la grille...</div>
-  <div id="grid"></div>
   <div id="cooldown">Prêt à dessiner ✅</div>
+  <div id="grid"></div>
+  
 
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -58,7 +59,7 @@
       databaseURL: "https://pixelwar-947d9-default-rtdb.europe-west1.firebasedatabase.app"
     };
 
-    let isLoading = true; // true tant que la grille n'est pas chargée
+
 
     // Initialisation Firebase
     firebase.initializeApp(firebaseConfig);
@@ -69,8 +70,11 @@
     const cooldownDisplay = document.getElementById("cooldown");
     const loadingDisplay = document.getElementById("loading");
 
+    let isLoading = true; // true tant que la grille n'est pas chargée
+    cooldownDisplay.textContent = "Chargement en cours ⏳";
+
     const size = 50;
-    const cooldownTime = 3000; // 3s
+    const cooldownTime = 500; // 3s
     let canDraw = true;
 
     // Création de la grille (pixels blancs par défaut)
@@ -126,12 +130,14 @@
       // Masquer le loader et afficher la grille
       loadingDisplay.style.display = "none";
       grid.style.display = "grid";
-    
-      // Débloquer les clics
+      
+      // Débloquer les clics et mettre le texte “Prêt à dessiner”
       isLoading = false;
+      cooldownDisplay.textContent = "Prêt à dessiner ✅";
     });
 
   </script>
 </body>
 </html>
+
 
