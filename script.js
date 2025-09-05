@@ -26,7 +26,7 @@
   let isLoading = true;
   let canDraw = true;
   const size = 70; 
-  const cooldownTime = 5000; // ms
+  const cooldownTime = 2500; // ms
 
   let activePopup = null; // Pour éviter plusieurs popups en même temps
 
@@ -148,3 +148,4 @@
   });
 
 })();
+
