@@ -39,7 +39,6 @@ for (let i = 0; i < size * size; i++) {
   const pixel = document.createElement("div");
   pixel.classList.add("pixel");
   pixel.dataset.index = i;
-  pixel.style.background = "#ffffff"; 
   pixel.addEventListener("click", (e) => showPopup(i, e));
   grid.appendChild(pixel);
 }
@@ -145,3 +144,4 @@ db.ref("pixels").on("value", snapshot => {
     cooldownDisplay.textContent = "✅Prêt à dessiner✅";
   }
 });
+
