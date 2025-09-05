@@ -25,7 +25,7 @@ const cooldownDisplay = document.getElementById("cooldown");
 let isLoading = true;
 let canDraw = true;
 const size = 70; 
-const cooldownTime = 2000; // ms
+const cooldownTime = 5000; // ms
 
 let activePopup = null; // Pour éviter plusieurs popups en même temps
 
@@ -39,7 +39,7 @@ for (let i = 0; i < size * size; i++) {
   const pixel = document.createElement("div");
   pixel.classList.add("pixel");
   pixel.dataset.index = i;
-  pixel.style.background = "#E3E3E3"; 
+  pixel.style.background = "#FAFAFA"; 
   pixel.addEventListener("click", (e) => showPopup(i, e));
   grid.appendChild(pixel);
 }
@@ -122,7 +122,7 @@ function placePixel(index) {
 db.ref("pixels").once("value").then(snapshot => {
   if (!snapshot.exists()) {
     const initial = {};
-    for (let i = 0; i < size * size; i++) initial[i] = "#E3E3E3";
+    for (let i = 0; i < size * size; i++) initial[i] = "#FAFAFA";
     db.ref("pixels").set(initial);
   }
 });
@@ -145,4 +145,3 @@ db.ref("pixels").on("value", snapshot => {
     cooldownDisplay.textContent = "✅Prêt à dessiner✅";
   }
 });
-
