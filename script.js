@@ -25,7 +25,7 @@ const cooldownDisplay = document.getElementById("cooldown");
 let isLoading = true;
 let canDraw = true;
 const size = 70; 
-const cooldownTime = 5000; // ms
+const cooldownTime = 2000; // ms
 
 let activePopup = null; // Pour éviter plusieurs popups en même temps
 
@@ -145,3 +145,4 @@ db.ref("pixels").on("value", snapshot => {
     cooldownDisplay.textContent = "✅Prêt à dessiner✅";
   }
 });
+
