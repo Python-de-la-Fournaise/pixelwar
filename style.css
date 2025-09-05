@@ -55,7 +55,7 @@ label{
   grid-template-rows: repeat(70, 13px);
   gap: 0px;  /* ⚠️ Bordures supprimées */
   margin-top: 20px;
-  background-color: white;
+  background-color: #FAFAFA;
   border: 2px solid black;
   margin-bottom : 80px;
 }
@@ -110,4 +110,5 @@ label{
 .popup button.cancel {
   background: #b61a16;
   color: white;
+
 }
