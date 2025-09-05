@@ -121,7 +121,7 @@ function placePixel(index) {
 db.ref("pixels").once("value").then(snapshot => {
   if (!snapshot.exists()) {
     const initial = {};
-    for (let i = 0; i < size * size; i++) initial[i] = "#ffffff";
+    for (let i = 0; i < size * size; i++) initial[i] = "#E3E3E3";
     db.ref("pixels").set(initial);
   }
 });
@@ -144,4 +144,5 @@ db.ref("pixels").on("value", snapshot => {
     cooldownDisplay.textContent = "✅Prêt à dessiner✅";
   }
 });
+
 
