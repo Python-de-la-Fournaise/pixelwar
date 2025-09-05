@@ -5,3 +5,4 @@
 > Create a data base in firebase (or other but it's a free solution)
 
 ### Settings 
+- 1 • 
