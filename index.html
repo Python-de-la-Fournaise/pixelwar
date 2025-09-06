@@ -8,10 +8,16 @@
 <body>
   <h1>PYTHON KOLER</h1>
   
-  <label>
-    Choisis une couleur : 
+  <label>Choisis une couleur :
     <input type="color" id="colorPicker" value="#000000">
   </label>
+  <button onclick="toggleRgb()">🎨 Mode RGB</button>
+
+  <div id="rgbControls" style="display:none;">
+    <label>R: <input type="number" id="rValue" min="0" max="255" value="0"></label>
+    <label>G: <input type="number" id="gValue" min="0" max="255" value="0"></label>
+    <label>B: <input type="number" id="bValue" min="0" max="255" value="0"></label>
+  </div>
 
   <!-- ✅ On garde seulement ça -->
   <div id="cooldown">⏳Chargement de la map⏳</div>
@@ -32,3 +38,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
