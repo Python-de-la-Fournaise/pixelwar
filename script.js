@@ -190,7 +190,7 @@
     }
   });
   
-  // ===============================
+// ===============================
   // 🔹 Mise à jour en temps réel
   // ===============================
   db.ref("pixels").on("value", snapshot => {
@@ -207,17 +207,16 @@
       cooldownDisplay.style.color = "#457028";
       cooldownDisplay.textContent = "✅Prêt à dessiner✅";
     }
-  })
+  });
 
-// ====================================
-// 🔹 Choix RGB possible sur téléphone
-// ===================================
+  // ====================================
+  // 🔹 Choix RGB possible sur téléphone
+  // ===================================
   function toggleRgb() {
     const rgbDiv = document.getElementById("rgbControls");
     rgbDiv.style.display = rgbDiv.style.display === "none" ? "block" : "none";
   }
-    
-    ;
-  
+
 })();
   
+
