@@ -212,11 +212,26 @@
   // ====================================
   // 🔹 Choix RGB possible sur téléphone
   // ===================================
-  function toggleRgb() {
-    const rgbDiv = document.getElementById("rgbControls");
-    rgbDiv.style.display = rgbDiv.style.display === "none" ? "block" : "none";
+  function rgbToHex(r, g, b) {
+    return "#" + [r, g, b]
+      .map(x => {
+        const hex = parseInt(x, 10).toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+      })
+      .join("");
   }
 
-})();
-  
+  // Quand on modifie R/G/B → mettre à jour le colorPicker
+  ["rValue", "gValue", "bValue"].forEach(id => {
+    const input = document.getElementById(id);
+    if (input) {
+      input.addEventListener("input", () => {
+        const r = document.getElementById("rValue").value;
+        const g = document.getElementById("gValue").value;
+        const b = document.getElementById("bValue").value;
+        document.getElementById("colorPicker").value = rgbToHex(r, g, b);
+      });
+    }
+  });
 
+})();
