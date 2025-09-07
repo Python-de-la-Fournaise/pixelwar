@@ -147,7 +147,7 @@
           ⏳ Attendez <span id="popupCooldown">${cooldownRemaining}</span>s <br>
           <div style="margin-bottom:3px; margin-top:3px;">
             <button class="cancel">Annuler</button>
-            <button class="select">Utiliser</button>
+            <button class="select">Sélectionner 🎨</button>
           </div>
         </span>
       `;
@@ -179,7 +179,7 @@
             <button class="cancel">Non</button>
           </div>
           <div>
-            <button class="select" style="width:80px;">Utiliser</button>
+            <button class="select" style="width:80px;">Sélectionner 🎨</button>
           </div>
         </span>
       `;
@@ -362,3 +362,4 @@
   window.usePixelColor = usePixelColor;
 
 })();
+
