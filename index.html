@@ -2,21 +2,22 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>V2</title>
+  <title>Python Koler</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>PYTHON KOLER</h1>
   
-  <label>Choisis une couleur :
+  <label>Choix de la couleur :
     <input type="color" id="colorPicker" value="#000000">
   </label>
-  <button onclick="toggleRgb()">🎨 Mode RGB</button>
+  <button id="toggleRgb">🎨 Mode RGB</button>
 
   <div id="rgbControls" style="display:none;">
     <label>R: <input type="number" id="rValue" min="0" max="255" value="0"></label>
     <label>G: <input type="number" id="gValue" min="0" max="255" value="0"></label>
     <label>B: <input type="number" id="bValue" min="0" max="255" value="0"></label>
+    <button id="validateRgb">✅ Valider</button>
   </div>
 
   <!-- ✅ On garde seulement ça -->
@@ -38,5 +39,4 @@
   <script src="script.js"></script>
 </body>
 </html>
-
 
