@@ -146,8 +146,10 @@
         <span id="popupText" style="text-align:center;display:inline-block;">
           ⏳ Attendez <span id="popupCooldown">${cooldownRemaining}</span>s <br>
           <div style="margin-bottom:3px; margin-top:3px;">
-            <button class="cancel">Annuler</button>
-            <button class="select">Sélectionner🎨</button>
+            <button class="cancel" style="width:107px">Annuler</button>
+          </div>
+          <div>
+            <button class="select";">Sélectionner🎨</button>
           </div>
         </span>
       `;
@@ -175,11 +177,11 @@
         <span id="popupText" style="text-align:center;display:inline-block;">
           Valider ?
           <div style="margin-bottom:3px; margin-top:3px;">
-            <button class="confirm" style="margin-right:0px;">Oui</button>
-            <button class="cancel">Non</button>
+            <button class="confirm" style="width:52px">Oui</button>
+            <button class="cancel" style="width:52px">Non</button>
           </div>
           <div>
-            <button class="select" style="width:80px;">Sélectionner🎨</button>
+            <button class="select";">Sélectionner🎨</button>
           </div>
         </span>
       `;
@@ -211,7 +213,7 @@
     // Positionner la popup
     const rect = pixel.getBoundingClientRect();
     popup.style.left = `${rect.left + window.scrollX + 20}px`;
-    popup.style.top = `${rect.top + window.scrollY - 55}px`;
+    popup.style.top = `${rect.top + window.scrollY - 75}px`;
 
     // 👀 Petit watcher local : dès que canDraw repasse à true, on bascule vers "Valider ?"
     // (on ne touche PAS au compteur ici ; il est mis à jour par startCooldown())
@@ -362,5 +364,3 @@
   window.usePixelColor = usePixelColor;
 
 })();
-
-
