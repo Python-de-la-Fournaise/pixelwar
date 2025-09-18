@@ -25,7 +25,7 @@
 
   let isLoading = true;
   let canDraw = true;
-  const size = 70;
+  const size = 100;
   const cooldownTime = 5000; // ms
 
   let activePopup = null;
@@ -364,3 +364,4 @@
   window.usePixelColor = usePixelColor;
 
 })();
+
