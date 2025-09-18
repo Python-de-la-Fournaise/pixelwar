@@ -55,9 +55,8 @@ label{
 
 #grid {
   display: grid;
-  /* ⚠️ Changer le "70" si tu veux une autre taille */
-  grid-template-columns: repeat(70, 13px);
-  grid-template-rows: repeat(70, 13px);
+  grid-template-columns: repeat(100, 10px);
+  grid-template-rows: repeat(100, 10px);
   gap: 0px;  /* ⚠️ Bordures supprimées */
   margin-top: 20px;
   background-color: #E3E3E3;
@@ -66,8 +65,8 @@ label{
 }
 
 .pixel {
-  width: 13px;
-  height: 13px;
+  width: 10px;
+  height: 10px;
   background: #fafafa;
   cursor: pointer;
 }
@@ -142,3 +141,4 @@ button{
 #rValue, #bValue, #gValue{
   font-family: "Lexend", bold;
 }
+
