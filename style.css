@@ -55,8 +55,8 @@ label{
 
 #grid {
   display: grid;
-  grid-template-columns: repeat(100, 10px);
-  grid-template-rows: repeat(100, 10px);
+  grid-template-columns: repeat(100, 9px);
+  grid-template-rows: repeat(100, 9px);
   gap: 0px;  /* ⚠️ Bordures supprimées */
   margin-top: 20px;
   background-color: #E3E3E3;
@@ -65,8 +65,8 @@ label{
 }
 
 .pixel {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   background: #fafafa;
   cursor: pointer;
 }
@@ -141,4 +141,5 @@ button{
 #rValue, #bValue, #gValue{
   font-family: "Lexend", bold;
 }
+
 
